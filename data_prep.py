@@ -1,4 +1,3 @@
-# data_prep.py
 import os
 import cv2
 import pandas as pd
@@ -17,4 +16,17 @@ def convert_dataset(dicom_dir, out_dir, csv_annotations):
     for i, row in annots.iterrows():
         dicom_file = os.path.join(dicom_dir, row['image_id'] + ".dicom")
         png_file = os.path.join(out_dir, row['image_id'] + ".png")
-        dicom_to_png(dicom_file, png_file)
+
+        if os.path.exists(dicom_file):
+            dicom_to_png(dicom_file, png_file)
+            print(f"Converted: {dicom_file} -> {png_file}")
+        else:
+            print(f"Warning: {dicom_file} not found, skipping.")
+
+if __name__ == "__main__":
+    dicom_folder = "dicom_dir"
+    output_folder = "converted_images"
+    annotation_csv = "annotations.csv"
+
+    convert_dataset(dicom_folder, output_folder, annotation_csv)
+
