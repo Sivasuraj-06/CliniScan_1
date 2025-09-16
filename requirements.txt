@@ -1,0 +1,10 @@
+torch
+torchvision
+pillow
+streamlit
+pyngrok
+pydicom
+opencv-python
+matplotlib
+grad-cam
+ultralytics
